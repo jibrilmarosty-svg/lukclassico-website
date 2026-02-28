@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luk-Classico | Luxury Perfumery</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Importing Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+    <div class="logo">Luk<span>-Classico</span></div>
+    <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Shop</a>
+        <!-- Add this Cart Icon/Count -->
+        <a href="#">Cart (<span id="cart-count">0</span>)</a>
+        <button class="btn">Add to Cart</button> 
+    </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Essence of Timelessness</h1>
+        <p style="font-size: 1.2rem; margin-bottom: 30px;">Luxury fragrances crafted for the modern individual.</p>
+        <a href="#" class="btn">Explore Collection</a>
+    </section>
+
+    <!-- Featured Collection -->
+    <section class="collection">
+        <h2>Signature Scents</h2>
+        <p>Discover our best-selling aromas.</p>
+        
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Perfume 1" class="product-img">
+                <h3>Luk Noir</h3>
+                <p>Oud, Vanilla, Pepper</p>
+                <p class="price">$120.00</p>
+                <button class="btn" style="padding: 10px 20px; font-size: 0.8rem;">Add to Cart</button>
+            </div>
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Perfume 2" class="product-img">
+                <h3>Classico Rose</h3>
+                <p>Rose, Sandalwood, Citrus</p>
+                <p class="price">$115.00</p>
+                <button class="btn" style="padding: 10px 20px; font-size: 0.8rem;">Add to Cart</button>
+            </div>
+            <!-- Product 3 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Perfume 3" class="product-img">
+                <h3>Velvet Amber</h3>
+                <p>Amber, Musk, Bergamot</p>
+                <p class="price">$130.00</p>
+                <button class="btn" style="padding: 10px 20px; font-size: 0.8rem;">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="logo" style="color:white; margin-bottom: 20px;">Luk<span>-Classico</span></div>
+        <p>&copy; 2023 Luk-Classico Perfumery. All rights reserved.</p>
+        <p>Paris • New York • Milan</p>
+    </footer>
+
+</body>
+<script>
+    // Initialize cart count
+    let cartCount = 0;
+
+    // Select all "Add to Cart" buttons
+    const buttons = document.querySelectorAll('.product-card .btn');
+
+    // Add click event to each button
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Increase count
+            cartCount++;
+            // Update the number in the navigation
+            document.getElementById('cart-count').innerText = cartCount;
+            // Show a message
+            alert('Item added to cart!');
+        });
+    });
+</script>
+</html>
