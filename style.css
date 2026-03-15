@@ -146,3 +146,42 @@
 
         }
 
+       
+.social-container {
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .social-links {
+      display: inline-flex;
+      gap: 20px; /* Space between icons */
+    }
+
+    .social-links a {
+      text-decoration: none;
+      color: #333; /* Default icon color */
+      font-size: 24px; /* Icon size */
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%; /* Makes background circular */
+      background-color: #f0f0f0; /* Background circle color */
+    }
+
+
+    /* Hover Effects */
+    .social-links a:hover {
+      transform: translateY(-3px); /* Lifts icon slightly */
+      color: #fff; /* Icon turns white */
+    }
+
+    /* Specific Brand Colors on Hover */
+    .social-links a.facebook:hover { background-color: #1877F2; }
+    .social-links a.instagram:hover { background-color: #E4405F; }
+    .social-links a.twitter:hover { background-color: #000000; }
+    .social-links a.linkedin:hover { background-color: #0A66C2; }
+    .social-links a.github:hover { background-color: #333; }
+
