@@ -3,124 +3,347 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luk-Classico | Luxury Perfumery</title>
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- Importing Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <title>Luk-classico | Premium Scents</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        
+    </style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav>
-    <div class="logo">Luk<span>-Classico</span></div>
-    <div class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">Shop</a>
-        <!-- Add this Cart Icon/Count -->
-        <a href="#">Cart (<span id="cart-count">0</span>)</a>
-        <!-- Replace the old button with this Link -->
-<a href="YOUR_STRIPE_PAYMENT_LINK_HERE" class="btn">Buy Now</a>
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be inserted here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn" onclick="proceedToCheckout()" disabled>
+                Proceed to Checkout
+            </button>
+        </div>
     </div>
-    </nav> 
+
+    <!-- Header / Navigation -->
+    <header>
+        <nav>
+            <div class="logo">Luk-Classico</div>
+            <div class="mobile-menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Shop</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <h1>Essence of Timelessness</h1>
-        <p style="font-size: 1.2rem; margin-bottom: 30px;">Luxury fragrances crafted for the modern individual.</p>
-        <a href="#" class="btn">Explore Collection</a>
-    </section>
-
-    <!-- Featured Collection -->
-    <section class="collection">
-        <h2>Signature Scents</h2>
-        <p>Discover our best-selling aromas.</p>
-        
-        <div class="product-grid">
-            <!-- Product 1 -->
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Perfume 1" class="product-img">
-                <h3>Luk Noir</h3>
-                <p>Oud, Vanilla, Pepper</p>
-                <p class="price">$120.00</p>
-                <button class="btn" style="padding: 10px 20px; font-size: 0.8rem;">Add to Cart</button>
-            </div>
-            <!-- Product 2 -->
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Perfume 2" class="product-img">
-                <h3>Classico Rose</h3>
-                <p>Rose, Sandalwood, Citrus</p>
-                <p class="price">$115.00</p>
-                <button class="btn" style="padding: 10px 20px; font-size: 0.8rem;">Add to Cart</button>
-            </div>
-            <!-- Product 3 -->
-            <div class="product-card">
-                <img src="https://sl.bing.net/gf9Wj6hgE20" alt="Perfume 3" class="product-img">
-                <h3>Velvet Amber</h3>
-                <p>Amber, Musk, Bergamot</p>
-                <p class="price">$130.00</p>
-                <button class="btn" style="padding: 10px 20px; font-size: 0.8rem;">Add to Cart</button>
-            </div>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Scents That Define You</h1>
+            <p>Premium Air Fresheners & Luxury Perfumes</p>
+            <a href="#products" class="btn">Shop Now</a>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        
-               <div class="social-container">
-    <div class="social-links">
-      
-      <!-- Facebook -->
-      <a href="https://facebook.com/YOUR_HANDLE" target="_blank" aria-label="Facebook" class="facebook">
-        <i class="fa-brands fa-facebook-f"></i>
-      </a>
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <h2 class="section-title">Best Sellers</h2>
+        <div class="product-grid">
+            
+            <!-- Product 1 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Perfume" class="product-img" data-id="1">
+                <div class="product-info">
+                    <h3 class="product-title">Midnight Rose Perfume</h3>
+                    <span class="product-price" data-price="60.00">#60.00</span>
+                    <button class="btn" onclick="addToCart(1, 'Midnight Rose Perfume', 60.00, 'https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60')">Add to Cart</button>
+                </div>
+            </div>
 
-      <!-- Instagram -->
-      <a href="https://www.instagram.com/airfreshnerplug?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" aria-label="Instagram" class="instagram">
-        <i class="fa-brands fa-instagram"></i>
-      </a>
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="11.jpg" alt="Air Freshener" class="product-img" data-id="2">
+                <div class="product-info">
+                    <h3 class="product-title">Ocean Breeze Spray</h3>
+                    <span class="product-price" data-price="12.00">$12.00</span>
+                    <button class="btn" onclick="addToCart(2, 'Ocean Breeze Spray', 12.00, 'https://images.unsplash.com/photo-1616606015525-413795c1e833?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60')">Add to Cart</button>
+                </div>
+            </div>
 
-      <!-- Tiktok -->
-      <a href="https://www.tiktok.com/@asap_africo?is_from_webapp=1&sender_device=pc" target="_blank" aria-label="Tiktok" class="tiktok">
-        <i class="fa-brands fa-tiktok"></i>
-      </a>
+            <!-- Product 3 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Candle" class="product-img" data-id="3">
+                <div class="product-info">
+                    <h3 class="product-title">Lavender Mist</h3>
+                    <span class="product-price" data-price="15.00">$15.00</span>
+                    <button class="btn" onclick="addToCart(3, 'Lavender Mist', 15.00, 'https://images.unsplash.com/photo-1594035910387-fea47794261f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60')">Add to Cart</button>
+                </div>
+            </div>
 
-      <!-- LinkedIn -->
-      <a href="https://linkedin.com/in/YOUR_HANDLE" target="_blank" aria-label="LinkedIn" class="linkedin">
-        <i class="fa-brands fa-linkedin-in"></i>
-      </a>
+            <!-- Product 4 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Perfume" class="product-img" data-id="4">
+                <div class="product-info">
+                    <h3 class="product-title">Golden Oud</h3>
+                    <span class="product-price" data-price="60.00">$60.00</span>
+                    <button class="btn" onclick="addToCart(4, 'Golden Oud', 60.00, 'https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60')">Add to Cart</button>
+                </div>
+            </div>
 
-    </div>
-  </div>
-        <div class="logo" style="color:white; margin-bottom: 20px;">Luk<span>-Classico</span></div>
-        <p>&copy; 2023 Luk-Classico Perfumery. All rights reserved.</p>
-        <p>Spain • New York • Ghana</p>
+        </div>
+    </section>
+
+    <!-- Footer with Social Media -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Luk-classico</h3>
+                <p>Bringing freshness and elegance to your home and wardrobe since 2023.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Ho station, Koforidua</p>
+                <p><i class="fas fa-phone"></i> +1 234 567 8900</p>
+                <p><i class="fas fa-envelope"></i> support@aromaluxe.com</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <p>Stay updated with our latest scents!</p>
+                <div class="social-links">
+                    <a href="https://facebook.com/yourpage" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/airfreshnerplug?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@asap_africo?is_from_webapp=1&sender_device=" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://wa.me/+233205830313" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Luk-Classico. All Rights Reserved.</p>
+        </div>
     </footer>
 
-</body>
-<script>
-    // Initialize cart count
-    let cartCount = 0;
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
 
-    // Select all "Add to Cart" buttons
-    const buttons = document.querySelectorAll('.product-card .btn');
+    <!-- JavaScript Functionality -->
+    <script>
+        // Cart State
+        let cart = [];
+        const cartSidebar = document.getElementById('cartSidebar');
+        const overlay = document.getElementById('overlay');
+        const cartItemsContainer = document.getElementById('cartItems');
+        const cartCountElement = document.getElementById('cartCount');
+        const cartTotalElement = document.getElementById('cartTotal');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const toast = document.getElementById('toast');
 
-    // Add click event to each button
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Increase count
-            cartCount++;
-            // Update the number in the navigation
-            document.getElementById('cart-count').innerText = cartCount;
-            // Show a message
-            alert('Item added to cart!');
+        // Toggle Cart Sidebar
+        function toggleCart() {
+            cartSidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Show Toast Notification
+        function showToast(message, isError = false) {
+            toast.textContent = message;
+            toast.classList.remove('error');
+            if (isError) {
+                toast.classList.add('error');
+            }
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Add to Cart
+        function addToCart(id, name, price, image) {
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+                showToast(`${name} quantity increased!`);
+            } else {
+                cart.push({
+                    id: id,
+                    name: name,
+                    price: price,
+                    image: image,
+                    quantity: 1
+                });
+                showToast(`${name} added to cart!`);
+            }
+            
+            updateCart();
+        }
+
+        // Remove from Cart
+        function removeFromCart(id) {
+            const itemIndex = cart.findIndex(item => item.id === id);
+            if (itemIndex > -1) {
+                const itemName = cart[itemIndex].name;
+                cart.splice(itemIndex, 1);
+                showToast(`${itemName} removed from cart!`);
+                updateCart();
+            }
+        }
+
+        // Update Quantity
+        function updateQuantity(id, change) {
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(id);
+                } else {
+                    updateCart();
+                }
+            }
+        }
+
+        // Update Cart Display
+        function updateCart() {
+            // Update cart count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCountElement.textContent = totalItems;
+
+            // Update cart items display
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Your cart is empty</p>
+                        <p style="margin-top: 10px;">Add some products to get started!</p>
+                    </div>
+                `;
+                checkoutBtn.disabled = true;
+            } else {
+                cartItemsContainer.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+                            <div class="cart-item-quantity">
+                                <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                            </div>
+                        </div>
+                        <i class="fas fa-trash remove-item" onclick="removeFromCart(${item.id})"></i>
+                    </div>
+                `).join('');
+                checkoutBtn.disabled = false;
+            }
+
+            // Update total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotalElement.textContent = `$${total.toFixed(2)}`;
+
+            // Save to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Proceed to Checkout
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                showToast('Your cart is empty!', true);
+                return;
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            // Here you would integrate with your cashout system
+            // For now, we'll show a confirmation
+            const confirmCheckout = confirm(`Total amount: $${total.toFixed(2)}\n\nProceed to payment?`);
+            
+            if (confirmCheckout) {
+                // Send cart data to your backend
+                fetch('/api/process-cashout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        items: cart,
+                        total: total,
+                        userId: 'USER_ID_HERE' // Get from session
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showToast('Order placed successfully!', false);
+                        cart = [];
+                        updateCart();
+                        toggleCart();
+                        // Redirect to success page
+                        // window.location.href = '/order-success';
+                    } else {
+                        showToast(data.message || 'Checkout failed', true);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showToast('System error. Please try again.', true);
+                });
+            }
+        }
+
+        // Load cart from localStorage on page load
+        function loadCart() {
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCart();
+            }
+        }
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                document.querySelector('.nav-links').classList.remove('active');
+            });
         });
-    });
-</script>
 
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadCart);
+    </script>
+</body>
 </html>
-
 
 
 
